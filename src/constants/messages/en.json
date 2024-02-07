@@ -1,0 +1,17 @@
+{
+  "home" : "Home",
+  "login" : "Login",
+  "enter_your_email_for_login" : "Enter your email and password to log in",
+  "email"  : "Email",
+  "insert_email" : "Insert Email",
+  "show_password" : "Show Password",
+  "password" : "Password",
+  "insert_password" : "Insert Password",
+  "loading" : "Loading",
+  "dont_have_account" : "Don't you have an account yet?",
+  "register_here" : "register here",
+  "register" : "Register",
+  "register_description" : "Enter your account information to register",
+  "do_you_have_account" : "Do you already have an account? ",
+  "login_here" : "login here"
+}
