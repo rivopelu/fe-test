@@ -36,6 +36,7 @@ export function LoginPage() {
               value={formik.values.email}
               errorMessage={formik.touched.email && formik.errors.email}
               startAdornment={<Person />}
+              onEnter={() => formik.handleSubmit()}
               label={t('email')}
               placeholder={t('insert_email')}
             />
@@ -45,6 +46,7 @@ export function LoginPage() {
               id={'password'}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              onEnter={() => formik.handleSubmit()}
               value={formik.values.password}
               errorMessage={formik.touched.password && formik.errors.password}
               startAdornment={<Key />}

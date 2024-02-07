@@ -2,7 +2,7 @@ import { useRegisterPage } from './useRegisterPage.ts';
 import { InputText } from '../../components/InputText.tsx';
 import { Key, Person } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import { Checkbox, FormControlLabel } from '@mui/material';
+import { Alert, Checkbox, FormControlLabel } from '@mui/material';
 import { Btn } from '../../components/Btn.tsx';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes.ts';
@@ -14,8 +14,15 @@ export function RegisterPage() {
   return (
     <div className={'h-screen'}>
       <div className={' z-50 h-full relative  w-full flex items-center justify-center'}>
-        <div className={'bg-white p-6 lg:min-w-[600px] mx-4 rounded-lg shadow-lg'}>
-          <div>
+        <div className={'bg-white p-6 lg:min-w-[500px] mx-4 rounded-lg shadow-lg'}>
+          <div className={'mb-4'}>
+            {page.successRegister && (
+              <div className={'mb-3'}>
+                <Alert variant="outlined" severity="success">
+                  {t('register_success_alert')}
+                </Alert>
+              </div>
+            )}
             <h1>{t('register')}</h1>
             <div>{t('register_description')}</div>
             <div className={'mt-2'}>
@@ -25,11 +32,13 @@ export function RegisterPage() {
               </Link>
             </div>
           </div>
+
           <div className={'mt-4 grid gap-4'}>
             <InputText
               name={'email'}
               id={'email'}
               required
+              onEnter={() => formik.handleSubmit()}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
@@ -41,6 +50,7 @@ export function RegisterPage() {
             <InputText
               name={'password'}
               required
+              onEnter={() => formik.handleSubmit()}
               id={'password'}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -52,8 +62,8 @@ export function RegisterPage() {
               type={page.showPassword ? 'text' : 'password'}
             />
             <FormControlLabel control={<Checkbox onChange={page.onChangeShowPassword} checked={page.showPassword} />} label={t('show_password')} />
-            <Btn sx={{ py: 2 }} onClick={() => formik.handleSubmit()}>
-              {t('register')}
+            <Btn variant={'outlined'} sx={{ py: 2 }} onClick={() => formik.handleSubmit()}>
+              {t(page.loadingRegister ? 'loading' : 'register')}
             </Btn>
           </div>
         </div>

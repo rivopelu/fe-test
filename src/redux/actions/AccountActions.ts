@@ -22,4 +22,10 @@ export class AccountActions extends BaseActions {
         });
     };
   }
+
+  register(data: IReqLogin) {
+    return async () => {
+      return await this.httpService.POST(ENDPOINT.REGISTER(), data);
+    };
+  }
 }

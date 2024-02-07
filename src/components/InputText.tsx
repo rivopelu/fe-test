@@ -3,6 +3,11 @@ import { HTMLInputTypeAttribute, ReactNode } from 'react';
 import { StyleVariable } from '../constants/StyleVariable.ts';
 
 export function InputText(props: IProps) {
+  const handleKeyDown = (event: any) => {
+    if (event.key === 'Enter' && props.onEnter) {
+      props.onEnter();
+    }
+  };
   return (
     <div className={'w-full flex flex-col items-center justify-start'}>
       <div className={'w-full text-start text-sm pb-1 text-slate-700'}>
@@ -12,6 +17,7 @@ export function InputText(props: IProps) {
         name={props.name}
         id-={props.id}
         value={props.value}
+        onKeyDown={handleKeyDown}
         onChange={props.onChange}
         onBlur={props.onBlur}
         required={props.required}
@@ -49,4 +55,5 @@ interface IProps {
   errorMessage?: any;
   value?: any;
   disable?: boolean;
+  onEnter?: () => void;
 }
