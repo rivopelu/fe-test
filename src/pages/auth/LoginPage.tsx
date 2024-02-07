@@ -53,13 +53,15 @@ export function LoginPage() {
               type={page.showPassword ? 'text' : 'password'}
             />
             <FormControlLabel control={<Checkbox onChange={page.onChangeShowPassword} checked={page.showPassword} />} label={t('show_password')} />
-            <Btn sx={{ py: 2 }} onClick={() => formik.handleSubmit()} endIcon={<Login />}>
+            <Btn variant={'outlined'} sx={{ py: 2 }} onClick={() => formik.handleSubmit()} endIcon={<Login />}>
               {t(page.loadingLogin ? 'loading' : 'login').toUpperCase()}
             </Btn>
           </div>
         </div>
       </div>
-      <div className={'bg-primary-dark hidden lg:block'}></div>
+      <div className={'bg-primary-dark hidden lg:block'}>
+        <img src={page.imageUrl} className={'h-full w-full object-cover'} alt={'login'} />
+      </div>
     </div>
   );
 }

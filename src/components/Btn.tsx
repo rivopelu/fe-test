@@ -9,7 +9,7 @@ export function Btn(props: IProps) {
     <Button
       onClick={props.onClick}
       variant={props.variant || 'contained'}
-      sx={{ borderRadius: 2, ...props.sx }}
+      sx={{ borderRadius: 2, background: props.variant === 'outlined' ? 'white' : undefined, ...props.sx }}
       color={props.color}
       startIcon={props.startIcon}
       endIcon={props.endIcon}

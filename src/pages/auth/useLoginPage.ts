@@ -11,6 +11,8 @@ export function useLoginPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const accountActions = new AccountActions();
+  const imageUrl =
+    'https://4.bp.blogspot.com/-cLaYNBfwlHk/XGCrtANnA_I/AAAAAAAABsg/M1QserS5vm0abZ5OaKR7TuaTO3Bw9xehQCLcBGAs/s1600-rw/landscape%2Bphotography.jpg';
   const account = useAppSelector((state) => state.Account);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loadingLogin, setLoadingLogin] = useState<boolean>(false);
@@ -50,6 +52,7 @@ export function useLoginPage() {
     showPassword,
     loadingLogin,
     formik,
+    imageUrl,
     onChangeShowPassword,
   };
 }
