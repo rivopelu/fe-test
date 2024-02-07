@@ -39,7 +39,10 @@ export function useRegisterPage() {
   function onSuccessRegister() {
     setSuccessRegister(true);
     setLoadingRegister(false);
-    alert('oke');
+    formik.setValues({
+      email: '',
+      password: '',
+    });
   }
 
   function onChangeShowPassword() {

@@ -14,5 +14,6 @@
   "register_description" : "Enter your account information to register",
   "do_you_have_account" : "Do you already have an account? ",
   "login_here" : "login here",
+  "success" : "Success",
   "register_success_alert" : "Account registered successfully, please login"
 }

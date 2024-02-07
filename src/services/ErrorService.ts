@@ -7,7 +7,7 @@ export default class ErrorService {
   private authService = new AuthServices();
 
   private handleSnackbar(message: string) {
-    this.enqueueSnackbar.enqueueSnackbar(message, { variant: 'error' });
+    this.enqueueSnackbar.enqueueSnackbar(message, { variant: 'error', anchorOrigin: { vertical: 'top', horizontal: 'center' } });
   }
 
   private handleSnackbarSuccess(message: string) {

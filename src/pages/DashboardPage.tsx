@@ -1,7 +1,9 @@
+import { Container } from '@mui/material';
+
 export function DashboardPage() {
   return (
-    <div>
-      <h1>DASHBOARD PAGE</h1>
-    </div>
+    <Container>
+      <h3>DASHBOARD PAGE</h3>
+    </Container>
   );
 }

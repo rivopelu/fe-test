@@ -24,8 +24,8 @@ export function useLoginPage() {
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'eve.holt@reqres.in',
+      password: 'cityslicka',
     },
     validationSchema: validationScheme,
     onSubmit: (values) => {
