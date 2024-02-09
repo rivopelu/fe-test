@@ -62,7 +62,13 @@ export function DashboardPage() {
 
   return (
     <>
-      <PopupModal onSubmit={() => page.onSubmitBlog()} onClose={page.onCloseModal} isOpen={page.openModalNew} components={createModal()} />
+      <PopupModal
+        disableSubmit={page.disableSubmit}
+        onSubmit={() => page.onSubmitBlog()}
+        onClose={page.onCloseModal}
+        isOpen={page.openModalNew}
+        components={createModal()}
+      />
       <Container>
         <div className={'flex items-center justify-between'}>
           <h3>DASHBOARD PAGE</h3>

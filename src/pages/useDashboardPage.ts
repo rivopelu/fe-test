@@ -12,31 +12,7 @@ export function useDashboardPage() {
   const textHelper = new TextHelper();
   const [data, setData] = useState<IResListBlog[]>([]);
   const [openModalNew, setOpenModalNew] = useState<boolean>(false);
-
-  function onChanges(e: firebase.database.DataSnapshot) {
-    const dataParse: IResListBlog[] = [];
-    e.forEach(function (v) {
-      const value = v.val();
-      const key = v.key;
-      dataParse.push({ ...value, key: key });
-    });
-    setData(dataParse);
-  }
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-  useEffect(() => {
-    crudService.getAll().on('value', onChanges);
-  }, []);
-
-  function onCloseModal() {
-    setOpenModalNew(false);
-  }
-
-  function onSubmitBlog() {
-    formik.handleSubmit();
-  }
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(true);
 
   const uuid = uuidv4();
   const initState: IReqCreateBlog = {
@@ -54,13 +30,44 @@ export function useDashboardPage() {
     },
   });
 
+  function onChanges(e: firebase.database.DataSnapshot) {
+    const dataParse: IResListBlog[] = [];
+    e.forEach(function (v) {
+      const value = v.val();
+      const key = v.key;
+      dataParse.push({ ...value, key: key });
+    });
+    setData(dataParse);
+  }
+
+  useEffect(() => {
+    crudService.getAll().on('value', onChanges);
+  }, []);
+
+  function onCloseModal() {
+    setOpenModalNew(false);
+  }
+
+  function onSubmitBlog() {
+    formik.handleSubmit();
+  }
+
+  useEffect(() => {
+    if (formik.values.body && formik.values.title) {
+      setDisableSubmit(false);
+    } else {
+      setDisableSubmit(true);
+    }
+  }, [formik.values]);
+
   return {
     data,
     textHelper,
     openModalNew,
+    formik,
+    disableSubmit,
     onCloseModal,
     onSubmitBlog,
     setOpenModalNew,
-    formik,
   };
 }

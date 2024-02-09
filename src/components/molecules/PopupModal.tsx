@@ -17,7 +17,7 @@ interface IProps {
   children?: any;
   hiddenCloseButton?: boolean;
   singleButton?: boolean;
-
+  disableSubmit?: boolean;
   widthFit?: boolean;
   onSubmit?: () => void;
   verticalBtn?: boolean;
@@ -71,7 +71,13 @@ export const PopupModal = (props: IProps) => {
                       </Button>
                     )}
 
-                    <Button classes={{ contained: 'border w-full uppercase' }} variant={'contained'} type={'submit'} onClick={props.onSubmit}>
+                    <Button
+                      disabled={props.disableSubmit}
+                      classes={{ contained: 'border w-full uppercase' }}
+                      variant={'contained'}
+                      type={'submit'}
+                      onClick={props.onSubmit}
+                    >
                       {props.okLabel ? props.okLabel : t('oke').toUpperCase()}
                     </Button>
                   </div>
