@@ -26,6 +26,7 @@
   "create_new_blog" : "create new blog",
   "detail" : "Detail",
   "delete" : "Delete",
-  "Edit" : "Edit"
+  "Edit" : "Edit",
+  "Dashboard" : "Dashboard"
 
 }

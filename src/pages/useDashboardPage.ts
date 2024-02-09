@@ -15,6 +15,7 @@ export function useDashboardPage() {
   const [disableSubmit, setDisableSubmit] = useState<boolean>(true);
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [dataDetail, setDataDetail] = useState<IResListBlog | undefined>(undefined);
+  const [keyEdit, setKeyEdit] = useState<string | undefined>(undefined);
   const uuid = uuidv4();
   const initState: IReqCreateBlog = {
     id: '',
@@ -27,9 +28,17 @@ export function useDashboardPage() {
     onSubmit: (values) => {
       setOpenModalNew(false);
       formik.setValues(initState);
-      crudService.create({ ...values, id: uuid });
+      if (keyEdit) {
+        crudService.update(keyEdit, { ...values, id: uuid }).then();
+      } else {
+        crudService.create({ ...values, id: uuid });
+      }
     },
   });
+
+  function onDeleteData(key: string) {
+    crudService.delete(key).then();
+  }
 
   function onChanges(e: firebase.database.DataSnapshot) {
     const dataParse: IResListBlog[] = [];
@@ -50,6 +59,7 @@ export function useDashboardPage() {
 
   function onCloseModal() {
     setOpenModalNew(false);
+    setKeyEdit(undefined);
   }
 
   function onClickDetail(e: IResListBlog) {
@@ -65,6 +75,24 @@ export function useDashboardPage() {
   }
   function onSubmitBlog() {
     formik.handleSubmit();
+  }
+
+  function onClickNew() {
+    formik.setValues(initState);
+    setOpenModalNew(true);
+    setKeyEdit(undefined);
+  }
+  function onClickEdit(e: IResListBlog) {
+    setDataDetail(e);
+    const data: IReqCreateBlog = {
+      id: e.id,
+      title: e.title,
+      body: e.body,
+      key: e.key,
+    };
+    setKeyEdit(e.key);
+    formik.setValues(data);
+    setOpenModalNew(true);
   }
 
   useEffect(() => {
@@ -83,10 +111,13 @@ export function useDashboardPage() {
     disableSubmit,
     showDetail,
     dataDetail,
+    onClickNew,
     onCloseModal,
     onSubmitBlog,
     setOpenModalNew,
     onClickDetail,
     onCloseDetail,
+    onDeleteData,
+    onClickEdit,
   };
 }

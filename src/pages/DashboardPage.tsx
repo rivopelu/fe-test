@@ -74,12 +74,12 @@ export function DashboardPage() {
           </IconButton>
         </Tooltip>
         <Tooltip title={t('edit')}>
-          <IconButton>
+          <IconButton onClick={() => page.onClickEdit(e)}>
             <Edit color={'primary'} />
           </IconButton>
         </Tooltip>
         <Tooltip title={t('delete')}>
-          <IconButton>
+          <IconButton onClick={() => page.onDeleteData(e.key)}>
             <Delete color={'error'} />
           </IconButton>
         </Tooltip>
@@ -108,8 +108,8 @@ export function DashboardPage() {
       <PopupModal onClose={page.onCloseDetail} onCancel={page.onCloseDetail} isOpen={page.showDetail} components={componentDetail()} />
       <Container>
         <div className={'flex items-center justify-between'}>
-          <h3>DASHBOARD PAGE</h3>
-          <Btn onClick={() => page.setOpenModalNew(true)} startIcon={<Add />}>
+          <h3>{t('dashboard').toUpperCase()}</h3>
+          <Btn onClick={page.onClickNew} startIcon={<Add />}>
             {t('new_blog').toUpperCase()}
           </Btn>
         </div>
