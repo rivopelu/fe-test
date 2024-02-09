@@ -9,17 +9,20 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import storeRedux from './redux/store.ts';
 import { SnackbarProvider } from 'notistack';
+import Context from './components/AppContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={storeRedux}>
-        <ThemeProvider theme={themeConfig}>
-          <SnackbarProvider maxSnack={3}>
-            <App />
-          </SnackbarProvider>
-        </ThemeProvider>
-      </Provider>
-    </BrowserRouter>
+    <Context>
+      <BrowserRouter>
+        <Provider store={storeRedux}>
+          <ThemeProvider theme={themeConfig}>
+            <SnackbarProvider maxSnack={3}>
+              <App />
+            </SnackbarProvider>
+          </ThemeProvider>
+        </Provider>
+      </BrowserRouter>
+    </Context>
   </React.StrictMode>
 );

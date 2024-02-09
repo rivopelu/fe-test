@@ -15,5 +15,11 @@
   "do_you_have_account" : "Do you already have an account? ",
   "login_here" : "login here",
   "success" : "Success",
-  "register_success_alert" : "Account registered successfully, please login"
+  "register_success_alert" : "Account registered successfully, please login",
+  "new_blog" : "new blog",
+  "title" : "Title",
+  "insert_title" : "Insert title",
+  "body" : "body",
+  "insert_body" : "Insert body",
+  "submit" : "submit"
 }
