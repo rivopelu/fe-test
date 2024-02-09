@@ -21,5 +21,7 @@
   "insert_title" : "Insert title",
   "body" : "body",
   "insert_body" : "Insert body",
-  "submit" : "submit"
+  "submit" : "submit",
+  "key" : "key"
+
 }
