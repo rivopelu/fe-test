@@ -13,7 +13,8 @@ export function useDashboardPage() {
   const [data, setData] = useState<IResListBlog[]>([]);
   const [openModalNew, setOpenModalNew] = useState<boolean>(false);
   const [disableSubmit, setDisableSubmit] = useState<boolean>(true);
-
+  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const [dataDetail, setDataDetail] = useState<IResListBlog | undefined>(undefined);
   const uuid = uuidv4();
   const initState: IReqCreateBlog = {
     id: '',
@@ -42,12 +43,26 @@ export function useDashboardPage() {
 
   useEffect(() => {
     crudService.getAll().on('value', onChanges);
+    return () => {
+      crudService.getAll().off('value', onChanges);
+    };
   }, []);
 
   function onCloseModal() {
     setOpenModalNew(false);
   }
 
+  function onClickDetail(e: IResListBlog) {
+    setDataDetail(e);
+    setShowDetail(true);
+  }
+
+  function onCloseDetail() {
+    setShowDetail(false);
+    setTimeout(() => {
+      setDataDetail(undefined);
+    }, 400);
+  }
   function onSubmitBlog() {
     formik.handleSubmit();
   }
@@ -66,8 +81,12 @@ export function useDashboardPage() {
     openModalNew,
     formik,
     disableSubmit,
+    showDetail,
+    dataDetail,
     onCloseModal,
     onSubmitBlog,
     setOpenModalNew,
+    onClickDetail,
+    onCloseDetail,
   };
 }

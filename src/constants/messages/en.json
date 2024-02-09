@@ -23,6 +23,9 @@
   "insert_body" : "Insert body",
   "submit" : "submit",
   "key" : "key",
-  "create_new_blog" : "create new blog"
+  "create_new_blog" : "create new blog",
+  "detail" : "Detail",
+  "delete" : "Delete",
+  "Edit" : "Edit"
 
 }

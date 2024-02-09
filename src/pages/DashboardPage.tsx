@@ -1,7 +1,7 @@
-import { Container } from '@mui/material';
+import { Container, IconButton, Tooltip } from '@mui/material';
 import { Btn } from '../components/Btn.tsx';
 import { useTranslation } from 'react-i18next';
-import { Add } from '@mui/icons-material';
+import { Add, Delete, Edit, Info } from '@mui/icons-material';
 import { useDashboardPage } from './useDashboardPage.ts';
 import { ITableColumnData, MainTable } from '../components/molecules/MainTable.tsx';
 import { IResListBlog } from '../model/response/IResListBlog.ts';
@@ -29,6 +29,11 @@ export function DashboardPage() {
       key: 'body',
       headerTitle: t('body'),
       layouts: (e: IResListBlog) => <div>{e?.body ? page.textHelper.truncateText(e.body) : '-'}</div>,
+    },
+    {
+      key: 'actions',
+      headerTitle: 'action',
+      layouts: uiActions,
     },
   ];
 
@@ -60,6 +65,37 @@ export function DashboardPage() {
     );
   }
 
+  function uiActions(e: IResListBlog) {
+    return (
+      <div className={'grid grid-cols-3 gap-3'}>
+        <Tooltip title={t('detail')}>
+          <IconButton onClick={() => page.onClickDetail(e)}>
+            <Info color={'info'} />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title={t('edit')}>
+          <IconButton>
+            <Edit color={'primary'} />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title={t('delete')}>
+          <IconButton>
+            <Delete color={'error'} />
+          </IconButton>
+        </Tooltip>
+      </div>
+    );
+  }
+
+  function componentDetail() {
+    return (
+      <div className={'max-h-[75vh]  overflow-y-auto'}>
+        <h3>{page.dataDetail?.title || '-'}</h3>
+        <div className={'mt-2'}>{page.dataDetail?.body || ''}</div>
+      </div>
+    );
+  }
+
   return (
     <>
       <PopupModal
@@ -69,6 +105,7 @@ export function DashboardPage() {
         isOpen={page.openModalNew}
         components={createModal()}
       />
+      <PopupModal onClose={page.onCloseDetail} onCancel={page.onCloseDetail} isOpen={page.showDetail} components={componentDetail()} />
       <Container>
         <div className={'flex items-center justify-between'}>
           <h3>DASHBOARD PAGE</h3>
