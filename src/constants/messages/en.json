@@ -27,6 +27,7 @@
   "detail" : "Detail",
   "delete" : "Delete",
   "Edit" : "Edit",
-  "Dashboard" : "Dashboard"
+  "Dashboard" : "Dashboard",
+  "logout" : "logout"
 
 }

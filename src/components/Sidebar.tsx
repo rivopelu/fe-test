@@ -7,6 +7,7 @@ import { PageTypeEnum } from '../enums/PageTypeEnums.ts';
 import { BrandLogo } from './BrandLogo.tsx';
 import { ENV } from '../constants/Env.ts';
 import { useTranslation } from 'react-i18next';
+import { Logout } from '@mui/icons-material';
 
 export function Sidebar(props: IProps) {
   const [currentPathSplit, setCurrentPathSplit] = useState<string>('/');
@@ -73,6 +74,14 @@ export function Sidebar(props: IProps) {
           </div>
         </div>
         <div>
+          <div className={'mb-10 border-b'}>
+            <ListItemButton>
+              <ListItemIcon>
+                <Logout color={'error'} />
+              </ListItemIcon>
+              <ListItemText primary={t('logout').toUpperCase()} />
+            </ListItemButton>
+          </div>
           <p className={'text-slate-500 text-xs'}>V {ENV.VERSION}</p>
         </div>
       </div>
