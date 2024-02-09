@@ -22,6 +22,7 @@
   "body" : "body",
   "insert_body" : "Insert body",
   "submit" : "submit",
-  "key" : "key"
+  "key" : "key",
+  "create_new_blog" : "create new blog"
 
 }
